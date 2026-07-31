@@ -1,10 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. BULLETPROOF SCROLL REVEAL OBSERVER
-  // Smoothly reveals elements once as they enter the screen so content remains readable and stable
+  // 1. SCROLL REVEAL OBSERVER
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -50px 0px', // Triggers slightly before element enters view for a seamless feel
+    rootMargin: '0px 0px -40px 0px',
     threshold: 0.1
   };
 
@@ -12,8 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        // Once revealed, unobserve so layout remains stable while scrolling back up
-        observer.unobserve(entry.target);
+        observer.unobserve(entry.target); // Keeps layout solid and stable once shown
       }
     });
   }, observerOptions);
@@ -22,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   revealElements.forEach(el => scrollObserver.observe(el));
 
 
-  // 2. SHOPPING BAG COUNTER & FEEDBACK
+  // 2. INTERACTIVE CART COUNTER
   let cartCount = 0;
   const cartCountDisplay = document.getElementById('cartCount');
   const addButtons = document.querySelectorAll('.add-btn');
@@ -32,12 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
       cartCount++;
       cartCountDisplay.textContent = cartCount;
 
-      // Pulse feedback
       const cartPill = document.getElementById('cartBtn');
       cartPill.style.transform = 'scale(1.08)';
       setTimeout(() => cartPill.style.transform = 'scale(1)', 180);
 
-      // Temporary button state feedback
       const originalText = e.target.textContent;
       e.target.textContent = '✓ ACQUIRED';
       e.target.style.backgroundColor = 'var(--accent-gold)';
@@ -52,15 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  // 3. NAVBAR SCROLL RESIZING
+  // 3. NAVBAR SCROLL PADDING RESIZE
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
-      navbar.style.padding = '0.7rem 2rem';
+      navbar.style.padding = '0.3rem 0';
       navbar.style.background = 'rgba(8, 8, 10, 0.95)';
     } else {
-      navbar.style.padding = '1.1rem 2rem';
-      navbar.style.background = 'rgba(8, 8, 10, 0.85)';
+      navbar.style.padding = '0';
+      navbar.style.background = 'rgba(8, 8, 10, 0.88)';
     }
   });
 
