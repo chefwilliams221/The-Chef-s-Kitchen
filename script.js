@@ -1,31 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. BIDIRECTIONAL SCROLL REVEAL (Fades In & Fades Out)
-  // Observer settings: rootMargin adds a cushion so animations feel natural
+  // 1. BULLETPROOF SCROLL REVEAL OBSERVER
+  // Smoothly reveals elements once as they enter the screen so content remains readable and stable
   const observerOptions = {
     root: null,
-    threshold: 0.15 // Triggers when 15% of the element enters/leaves the viewport
+    rootMargin: '0px 0px -50px 0px', // Triggers slightly before element enters view for a seamless feel
+    threshold: 0.1
   };
 
-  const scrollObserver = new IntersectionObserver((entries) => {
+  const scrollObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
-      // IF element enters the viewport -> Add .visible to slide/fade it IN
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-      } 
-      // ELSE element leaves the viewport (scrolling up or down) -> Remove .visible to slide/fade it OUT
-      else {
-        entry.target.classList.remove('visible');
+        // Once revealed, unobserve so layout remains stable while scrolling back up
+        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
-  // Attach observer to all reveal elements
   const revealElements = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up');
   revealElements.forEach(el => scrollObserver.observe(el));
 
 
-  // 2. INTERACTIVE SHOPPING BAG COUNTER
+  // 2. SHOPPING BAG COUNTER & FEEDBACK
   let cartCount = 0;
   const cartCountDisplay = document.getElementById('cartCount');
   const addButtons = document.querySelectorAll('.add-btn');
@@ -35,12 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
       cartCount++;
       cartCountDisplay.textContent = cartCount;
 
-      // Pulse animation on the cart pill
+      // Pulse feedback
       const cartPill = document.getElementById('cartBtn');
-      cartPill.style.transform = 'scale(1.1)';
-      setTimeout(() => cartPill.style.transform = 'scale(1)', 200);
+      cartPill.style.transform = 'scale(1.08)';
+      setTimeout(() => cartPill.style.transform = 'scale(1)', 180);
 
-      // Temporary button state update
+      // Temporary button state feedback
       const originalText = e.target.textContent;
       e.target.textContent = '✓ ACQUIRED';
       e.target.style.backgroundColor = 'var(--accent-gold)';
@@ -58,12 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. NAVBAR SCROLL RESIZING
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      navbar.style.padding = '0.8rem 2rem';
-      navbar.style.background = 'rgba(7, 7, 9, 0.92)';
+    if (window.scrollY > 60) {
+      navbar.style.padding = '0.7rem 2rem';
+      navbar.style.background = 'rgba(8, 8, 10, 0.95)';
     } else {
-      navbar.style.padding = '1.2rem 2rem';
-      navbar.style.background = 'rgba(7, 7, 9, 0.75)';
+      navbar.style.padding = '1.1rem 2rem';
+      navbar.style.background = 'rgba(8, 8, 10, 0.85)';
     }
   });
 
