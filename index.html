@@ -3,131 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CHEF'S RESERVE | Culinary Excellence</title>
-  <!-- Main CSS stylesheet -->
+  <title>Chef's Kitchen | Precision Culinary Instruments</title>
+  <!-- Google Fonts for high-end luxury typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Linking our stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Floating Navigation Bar that darkens when scrolling -->
+  <!-- Minimalist floating navigation header -->
   <nav id="navbar">
-    <div class="nav-container">
-      <div class="logo">CHEF'S RESERVE <span>🔪</span></div>
-      <ul class="nav-links">
-        <li><a href="#knives">Knives</a></li>
-        <li><a href="#boards">Cutting Boards</a></li>
-        <li><a href="#cookware">Cookware</a></li>
-        <li><a href="#about">The Craft</a></li>
-      </ul>
-      <button class="cart-btn" id="cartBtn">🛒 Cart (<span id="cartCount">0</span>)</button>
-    </div>
+    <div class="nav-brand">CHEF'S KITCHEN</div>
+    <ul class="nav-menu">
+      <li><a href="#instruments">Instruments</a></li>
+      <li><a href="#craftsmanship">Craftsmanship</a></li>
+      <li><a href="#guarantee">Guarantee</a></li>
+    </ul>
+    <button class="nav-cart" id="cartButton">CART (<span id="cartCount">0</span>)</button>
   </nav>
 
-  <!-- Hero Section with dark moody typography -->
-  <header class="hero">
-    <div class="hero-content">
-      <p class="subtitle">HANDCRAFTED FOR PROFESSIONALS</p>
-      <h1>Precision Tools For Culinary Masters</h1>
-      <p class="description">Elevate your kitchen experience with artisan knives, end-grain hardwoods, and heavy-duty iron cookware.</p>
-      <a href="#knives" class="cta-button">Explore Collection</a>
+  <!-- Fullscreen Pitch-Black Hero Section -->
+  <header class="hero-screen">
+    <div class="hero-inner">
+      <span class="hero-tagline">PROFESSIONAL GRADE CULINARY SUPPLIES</span>
+      <h1 class="hero-title">Chef's Kitchen</h1>
+      <p class="hero-subtext">Engineered for absolute balance, heat dispersion, and lifetime edge retention.</p>
+      <a href="#instruments" class="scroll-indicator">
+        <span>DISCOVER COLLECTION</span>
+        <div class="line"></div>
+      </a>
     </div>
   </header>
 
-  <main>
-    <!-- Section 1: Artisan Knives -->
-    <section id="knives" class="product-section scroll-reveal">
-      <div class="section-title">
-        <h2>Artisan Knives</h2>
-        <p>Forged from 67 layers of Damascus steel for unmatched edge retention.</p>
+  <!-- Main Alternating Product Showcase -->
+  <main id="instruments" class="showcase-container">
+
+    <!-- Row 1: Left-aligned content / Right-aligned specs -->
+    <div class="alternating-row">
+      <div class="showcase-card reveal-left">
+        <div class="card-icon">
+          <!-- Sleek minimalist SVG Knife icon -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5"><path d="M21 3L3 21M21 3L14 10M21 3L18 9"/></svg>
+        </div>
+        <span class="product-category">SERIES 01 — CUTLERY</span>
+        <h2>67-Layer VG10 Damascus Gyuto</h2>
+        <p>Hand-sharpened to a razor-sharp 12-degree bevel. Features a cryo-treated core wrapped in stainless steel layers and a balanced G10 composite handle.</p>
+        <ul class="spec-list">
+          <li>Core Hardness: 60±2 HRC</li>
+          <li>Blade Length: 8.2 Inches</li>
+        </ul>
+        <button class="acquire-btn" data-item="Damascus Gyuto">Acquire Instrument — $210</button>
       </div>
 
-      <div class="product-grid">
-        <div class="product-card">
-          <div class="card-badge">Best Seller</div>
-          <div class="product-icon">🗡️</div>
-          <h3>8" Damascus Chef Knife</h3>
-          <p>The ultimate kitchen workhorse. Perfect balance with an ergonomic Rosewood handle.</p>
-
-          <button class="add-to-cart-btn" data-product="Damascus Chef Knife">$189 — Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-          <div class="product-icon">🔪</div>
-          <h3>7" Japanese Santoku</h3>
-          <p>Precision slicing, dicing, and mincing with hollow-edge anti-stick dimples.</p>
-
-          <button class="add-to-cart-btn" data-product="Japanese Santoku">$165 — Add to Cart</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 2: Cutting Boards -->
-    <section id="boards" class="product-section scroll-reveal">
-      <div class="section-title">
-        <h2>End-Grain Cutting Boards</h2>
-        <p>Sustainably harvested hardwoods that preserve your knife edge.</p>
-      </div>
-
-      <div class="product-grid">
-        <div class="product-card">
-          <div class="product-icon">🪵</div>
-          <h3>Walnut Executive Board</h3>
-          <p>Deep rich grain with built-in juice grooves and non-slip rubber feet.</p>
-
-          <button class="add-to-cart-btn" data-product="Walnut Executive Board">$140 — Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-          <div class="product-icon">🪓</div>
-          <h3>Teak Butcher Block</h3>
-          <p>Heavy-duty end-grain block designed to handle heavy chopping and carving.</p>
-
-          <button class="add-to-cart-btn" data-product="Teak Butcher Block">$195 — Add to Cart</button>
+      <div class="visual-box reveal-right">
+        <div class="visual-border">
+          <span class="box-number">01</span>
+          <h3>FORGED IN SEKI, JAPAN</h3>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Section 3: Professional Cookware -->
-    <section id="cookware" class="product-section scroll-reveal">
-      <div class="section-title">
-        <h2>Professional Cookware</h2>
-        <p>Heavyweight cast iron and carbon steel built to last generations.</p>
-      </div>
-
-      <div class="product-grid">
-        <div class="product-card">
-          <div class="product-icon">🍳</div>
-          <h3>Pre-Seasoned Cast Iron Skillet</h3>
-          <p>Delivers incredible heat retention for the perfect steakhouse sear.</p>
-
-          <button class="add-to-cart-btn" data-product="Cast Iron Skillet">$95 — Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-          <div class="product-icon">🥘</div>
-          <h3>12" Carbon Steel Wok</h3>
-          <p>Lightweight, fast heating, and slick non-stick seasoning over time.</p>
-
-          <button class="add-to-cart-btn" data-product="Carbon Steel Wok">$110 — Add to Cart</button>
+    <!-- Row 2: Right-aligned content / Left-aligned specs (Alternating) -->
+    <div class="alternating-row reverse">
+      <div class="visual-box reveal-left">
+        <div class="visual-border">
+          <span class="box-number">02</span>
+          <h3>SUSTAINABLE TIMBER</h3>
         </div>
       </div>
-    </section>
 
-    <!-- Section 4: About / Craftsmanship -->
-    <section id="about" class="about-section scroll-reveal">
-      <div class="about-content">
-        <h2>Forged in Quality</h2>
-        <p>Every knife, board, and skillet in our collection undergoes a rigorous 20-point inspection before reaching your kitchen. Built for those who take cooking seriously.</p>
+      <div class="showcase-card reveal-right">
+        <div class="card-icon">
+          <!-- Sleek minimalist SVG Board icon -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <span class="product-category">SERIES 02 — PREPARATION</span>
+        <h2>End-Grain Black Walnut Board</h2>
+        <p>Constructed from 3-inch thick self-healing wood blocks. End-grain orientation absorbs knife strikes, protecting blade alignment through heavy daily usage.</p>
+        <ul class="spec-list">
+          <li>Dimensions: 18 x 24 x 3 Inches</li>
+          <li>Features: Perimeter Juice Well & Handles</li>
+        </ul>
+        <button class="acquire-btn" data-item="Walnut Board">Acquire Instrument — $175</button>
       </div>
-    </section>
+    </div>
+
+    <!-- Row 3: Left-aligned content / Right-aligned specs -->
+    <div class="alternating-row">
+      <div class="showcase-card reveal-left">
+        <div class="card-icon">
+          <!-- Sleek minimalist SVG Pan icon -->
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5"><circle cx="10" cy="12" r="7"/><path d="M17 12h5"/></svg>
+        </div>
+        <span class="product-category">SERIES 03 — COOKWARE</span>
+        <h2>Hand-Hammered Carbon Steel Wok</h2>
+        <p>Spun from 2mm heavy-gauge carbon steel. Heats twice as fast as cast iron while weighing half as much, creating immediate high-temperature sear.</p>
+        <ul class="spec-list">
+          <li>Pre-seasoned with Organic Flaxseed Oil</li>
+          <li>Induction & Open Flame Compatible</li>
+        </ul>
+        <button class="acquire-btn" data-item="Carbon Steel Wok">Acquire Instrument — $145</button>
+      </div>
+
+      <div class="visual-box reveal-right">
+        <div class="visual-border">
+          <span class="box-number">03</span>
+          <h3>THERMAL DYNAMICS</h3>
+        </div>
+      </div>
+    </div>
+
   </main>
 
-  <!-- Sleek Footer -->
+  <!-- Craftsmanship Statement Section -->
+  <section id="craftsmanship" class="statement-section reveal-up">
+    <h2>Built Without Compromise</h2>
+    <p>Every item in the Chef's Kitchen collection is built to heirloom standards. Designed for Michelin-grade environments, crafted to endure generations.</p>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>© 2026 CHEF'S RESERVE • All Rights Reserved</p>
+    <p>© 2026 CHEF'S KITCHEN • ALL RIGHTS RESERVED</p>
   </footer>
 
-  <!-- Linking external JavaScript file -->
+  <!-- Link external JavaScript file -->
   <script src="script.js"></script>
 </body>
 </html>
