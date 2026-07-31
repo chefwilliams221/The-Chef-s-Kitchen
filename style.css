@@ -1,213 +1,277 @@
-/* Base styles and warmth-filled color palette */
+/* Global Reset & Dark Luxury Theme Settings */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth; /* Enables smooth scrolling when clicking nav links */
+}
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fdf6ec; /* Warm checkered-kitchen feel */
-  color: #4a3e3d;
+  font-family: 'Cinzel', 'Segoe UI', Georgia, serif;
+  background-color: #0b0b0b; /* Pure dark obsidian background */
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+/* Translucent Floating Navigation Bar */
+#navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(11, 11, 11, 0.4); /* Semi-transparent background */
+  backdrop-filter: blur(12px); /* Glassmorphism blur effect */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.4s ease;
+}
+
+/* Darker navbar background applied by JavaScript on scroll */
+#navbar.scrolled {
+  background: rgba(11, 11, 11, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #d4af37; /* Warm metallic gold accent */
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: #c0c0c0;
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #d4af37;
+}
+
+.cart-btn {
+  background: transparent;
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cart-btn:hover {
+  background: #d4af37;
+  color: #0b0b0b;
+}
+
+/* Hero Section */
+.hero {
   min-height: 100vh;
-}
-
-/* Header styled like a cozy restaurant chalkboard banner */
-header {
-  background-color: #e74c3c;
-  color: #ffffff;
-  text-align: center;
-  padding: 1.5rem 1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-  font-size: 2.2rem;
-  margin-bottom: 0.3rem;
-}
-
-/* Layout for main arcade menu and game screen */
-main {
-  flex: 1;
   display: flex;
-  gap: 1.5rem;
-  max-width: 1000px;
-  width: 90%;
-  margin: 2rem auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1.5rem;
+  background: radial-gradient(circle at center, #1c1c1c 0%, #0b0b0b 70%); /* Subtle dark gradient glow */
 }
 
-/* Side navigation panel for selecting mini-games */
-.game-menu {
-  flex: 1;
-  background: #ffffff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 2px solid #f1c40f;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  height: fit-content;
+.hero-content {
+  max-width: 800px;
 }
 
-.game-menu h2 {
-  font-size: 1.2rem;
+.subtitle {
+  color: #d4af37;
+  font-size: 0.85rem;
+  letter-spacing: 4px;
   margin-bottom: 1rem;
-  color: #d35400;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.hero .description {
+  color: #a0a0a0;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  color: #0b0b0b;
+  background: #d4af37;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.cta-button:hover {
+  background: #f1c40f;
+  transform: translateY(-3px);
+}
+
+/* Product Sections & Scroll Animation Setup */
+.product-section, .about-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+/* Scroll Reveal Initial Hidden State (JavaScript triggers .visible) */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Scroll Reveal Activated Visible State */
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title h2 {
+  font-size: 2.2rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.section-title p {
+  color: #888;
+}
+
+/* Grid Layout for Products */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+}
+
+/* Translucent Product Cards */
+.product-card {
+  background: rgba(255, 255, 255, 0.03); /* Extremely soft translucent background */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #d4af37;
+  color: #0b0b0b;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
   text-transform: uppercase;
 }
 
-.game-menu ul {
-  list-style: none;
-}
-
-.menu-btn {
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 0.5rem;
-  border: 2px solid #e74c3c;
-  background-color: #fff;
-  color: #e74c3c;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.2s ease;
-}
-
-.menu-btn.active {
-  background-color: #e74c3c;
-  color: white;
-}
-
-.menu-btn.locked {
-  border-color: #ccc;
-  color: #888;
-  cursor: not-allowed;
-  background-color: #f9f9f9;
-}
-
-/* Main active game container */
-.game-container {
-  flex: 2.5;
-  background: #ffffff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#game-header {
-  text-align: center;
+.product-icon {
+  font-size: 3rem;
   margin-bottom: 1rem;
 }
 
-/* Stats display for Timer & Score */
-.stats-board {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  background-color: #fff3e0;
-  padding: 0.75rem;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: #d35400;
+.product-card h3 {
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.product-card p {
+  color: #a0a0a0;
+  font-size: 0.9rem;
   margin-bottom: 1.5rem;
 }
 
-/* The visual cutting board play area */
-.play-area {
+.add-to-cart-btn {
   width: 100%;
-  min-height: 200px;
-  background-color: #f5cba7; /* Wooden cutting board color */
-  border: 8px solid #dc7633;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-#recipe-prompt {
-  font-size: 1.2rem;
+.add-to-cart-btn:hover {
+  border-color: #d4af37;
+  background: #d4af37;
+  color: #0b0b0b;
   font-weight: bold;
 }
 
-/* Stacked ingredients container */
-.burger-stack {
-  display: flex;
-  flex-direction: column-reverse; /* Stack ingredients upward */
-  align-items: center;
-  gap: 4px;
-  margin-top: 10px;
-}
-
-.ingredient-layer {
-  font-size: 1.1rem;
-  font-weight: bold;
-  background-color: white;
-  padding: 0.2rem 1rem;
-  border-radius: 15px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Game Controls & Buttons */
-.controls {
+/* About Section */
+.about-section {
   text-align: center;
-  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  margin-bottom: 4rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-#startBtn {
-  background-color: #27ae60;
-  color: white;
-  border: none;
-  padding: 0.8rem 2rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.1s, background-color 0.2s;
+.about-content h2 {
+  color: #d4af37;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
-#startBtn:hover {
-  background-color: #219150;
-  transform: scale(1.03);
+.about-content p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #aaa;
+  font-size: 1.05rem;
 }
 
-.ingredient-buttons {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.ingredient-btn {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.ingredient-btn:hover {
-  background-color: #2980b9;
-}
-
-.hidden {
-  display: none !important;
-}
-
-/* Footer styling */
+/* Footer */
 footer {
   text-align: center;
-  padding: 1rem;
-  background-color: #4a3e3d;
-  color: #fff;
-  font-size: 0.9rem;
+  padding: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: #666;
+  font-size: 0.85rem;
 }
