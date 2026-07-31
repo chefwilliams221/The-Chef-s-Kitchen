@@ -23,13 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 2. Shopping Bag & Checkout State Management
+  // 2. Cart & Drawer State Management
   // ==========================================
-  let cart = []; // Stores { id, name, price, qty }
+  let cart = [];
+  const TAX_RATE = 0.085;
 
-  const TAX_RATE = 0.085; // 8.5% sales tax
-
-  // Elements
   const cartBtn = document.getElementById('cartBtn');
   const cartCountDisplay = document.getElementById('cartCount');
   const cartDrawer = document.getElementById('cartDrawer');
@@ -48,7 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const continueShoppingBtn = document.getElementById('continueShoppingBtn');
   const orderRefNum = document.getElementById('orderRefNum');
 
-  // Open & Close Drawer Handlers
+  // Secret Easter Egg Elements
+  const slashOverlay = document.getElementById('slashOverlay');
+  const voidScreen = document.getElementById('voidScreen');
+  const voidReturnBtn = document.getElementById('voidReturnBtn');
+
   const openCart = () => {
     cartDrawer.classList.add('open');
     cartBackdrop.classList.add('open');
@@ -63,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
   closeCartBtn.addEventListener('click', closeCart);
   cartBackdrop.addEventListener('click', closeCart);
 
-  // Esc Key to Close Drawer
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && cartDrawer.classList.contains('open')) {
       closeCart();
@@ -83,13 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       addToCart(itemName, itemPrice);
 
-      // Button Feedback UI
       const originalText = e.target.textContent;
       e.target.textContent = '✓ ACQUIRED';
       e.target.style.backgroundColor = 'var(--accent-gold)';
       e.target.style.color = 'var(--bg-dark)';
 
-      // Animate Cart Pill
       cartBtn.style.transform = 'scale(1.1)';
       setTimeout(() => cartBtn.style.transform = 'scale(1)', 180);
 
@@ -115,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Reset Success View if user adds item after purchase
     if (!paymentSuccessState.classList.contains('hidden')) {
       paymentSuccessState.classList.add('hidden');
     }
@@ -125,14 +123,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 4. Render Cart & Calculate Cost Outline
+  // 4. Render Cart & Calculate Totals
   // ==========================================
   const renderCart = () => {
-    // 1. Update Badge Count
     const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
     cartCountDisplay.textContent = totalQty;
 
-    // 2. Toggle Empty / Active States
     if (cart.length === 0) {
       cartEmptyState.classList.remove('hidden');
       cartActiveContent.classList.add('hidden');
@@ -142,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
       cartActiveContent.classList.remove('hidden');
     }
 
-    // 3. Render Items
     cartItemsContainer.innerHTML = '';
     cart.forEach(item => {
       const row = document.createElement('div');
@@ -162,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
       cartItemsContainer.appendChild(row);
     });
 
-    // 4. Quantity & Remove Button Event Listeners
     document.querySelectorAll('.minus-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const id = e.target.getAttribute('data-id');
@@ -184,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // 5. Calculate Cost Outline
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
     const tax = subtotal * TAX_RATE;
     const total = subtotal + tax;
@@ -212,38 +205,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 5. Payment & Checkout Action
+  // 5. Checkout Action & Slash Easter Egg Check
   // ==========================================
   checkoutBtn.addEventListener('click', () => {
     if (cart.length === 0) return;
 
-    // Simulate Processing State
+    // Check for exact Easter Egg condition:
+    // 1 Knife ("67-Layer VG10 Damascus Gyuto")
+    // 2 Boards ("End-Grain Black Walnut Board")
+    // 3 Woks ("Hand-Hammered Carbon Steel Wok")
+    const knife = cart.find(i => i.name === '67-Layer VG10 Damascus Gyuto');
+    const board = cart.find(i => i.name === 'End-Grain Black Walnut Board');
+    const wok = cart.find(i => i.name === 'Hand-Hammered Carbon Steel Wok');
+
+    const isEasterEggCombo = (
+      cart.length === 3 &&
+      knife && knife.qty === 1 &&
+      board && board.qty === 2 &&
+      wok && wok.qty === 3
+    );
+
+    if (isEasterEggCombo) {
+      triggerSlashSequence();
+      return;
+    }
+
+    // Standard Normal Purchase Flow
     const payBtnText = document.getElementById('payBtnText');
     payBtnText.textContent = 'Processing...';
     checkoutBtn.style.opacity = '0.7';
     checkoutBtn.disabled = true;
 
     setTimeout(() => {
-      // Generate Random Order Ref
       const randomOrderNum = Math.floor(1000 + Math.random() * 9000);
       orderRefNum.textContent = randomOrderNum;
 
-      // Clear Bag Data State & Reset UI
       cart = [];
       cartCountDisplay.textContent = '0';
 
-      // Hide Active View, Show Payment Success View
       cartActiveContent.classList.add('hidden');
       paymentSuccessState.classList.remove('hidden');
 
-      // Reset Button State
       payBtnText.textContent = 'Complete Purchase →';
       checkoutBtn.style.opacity = '1';
       checkoutBtn.disabled = false;
     }, 900);
   });
 
-  // Continue Browsing Button
+  // Function to Trigger Slash Easter Egg Sequence
+  const triggerSlashSequence = () => {
+    closeCart(); // Close cart drawer
+
+    // 1. Shake screen and trigger 3 flashing slashes
+    document.body.classList.add('screen-slashed');
+    slashOverlay.classList.remove('hidden');
+    slashOverlay.classList.add('active');
+
+    // 2. Transition into the dark void screen after slashes finish
+    setTimeout(() => {
+      voidScreen.classList.remove('hidden');
+      setTimeout(() => {
+        voidScreen.classList.add('visible-void');
+      }, 50);
+    }, 1100);
+  };
+
+  // Reset Easter Egg and return to shop
+  voidReturnBtn.addEventListener('click', () => {
+    voidScreen.classList.remove('visible-void');
+    setTimeout(() => {
+      voidScreen.classList.add('hidden');
+      slashOverlay.classList.remove('active');
+      slashOverlay.classList.add('hidden');
+      document.body.classList.remove('screen-slashed');
+
+      // Clear cart
+      cart = [];
+      renderCart();
+    }, 1000);
+  });
+
   continueShoppingBtn.addEventListener('click', () => {
     closeCart();
     setTimeout(() => {
