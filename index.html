@@ -3,35 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My First Website</title>
-  <!-- Linking our external CSS stylesheet for styling -->
+  <title>The Cozy Kitchen Arcade</title>
+  <!-- Linking main CSS stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Main header section containing the site title -->
+  <!-- Header featuring our kitchen arcade banner -->
   <header>
-    <h1>Welcome to My Website!</h1>
-    <p>Built with HTML, CSS, and JavaScript.</p>
+    <h1>🍳 The Cozy Kitchen Arcade 🍳</h1>
+    <p>Serve up high scores in your favorite culinary mini-games!</p>
   </header>
 
-  <!-- Main content area -->
+  <!-- Main hub containing our game menu and active game screen -->
   <main>
-    <section class="card">
-      <h2>About Me</h2>
-      <p>Hi! I'm learning web development and building my very first site hosted on GitHub Pages.</p>
-      <!-- An interactive button that triggers JavaScript -->
-      <button id="interactiveBtn">Click Me!</button>
-      <p id="messageText" class="hidden-message"></p>
+    <!-- Left Panel: Game Selection Menu -->
+    <aside class="game-menu">
+      <h2>Game Menu</h2>
+      <ul>
+        <li><button class="menu-btn active">🍔 Burger Speed-Stack</button></li>
+        <li><button class="menu-btn locked" disabled>🍕 Pizza Topper (Coming Soon)</button></li>
+        <li><button class="menu-btn locked" disabled>🧁 Cupcake Decorator (Coming Soon)</button></li>
+      </ul>
+    </aside>
+
+    <!-- Right Panel: Active Game Arena -->
+    <section class="game-container">
+      <div id="game-header">
+        <h2>Burger Speed-Stack</h2>
+        <p>Click the ingredients in order to build the burger before time runs out!</p>
+      </div>
+
+      <!-- Scoreboard display -->
+      <div class="stats-board">
+        <div>Score: <span id="score">0</span></div>
+        <div>Time Left: <span id="timer">15</span>s</div>
+      </div>
+
+      <!-- Main Interactive Play Area -->
+      <div id="play-area" class="play-area">
+        <p id="recipe-prompt">Press "Start Cooking" to begin!</p>
+        <div id="burger-stack" class="burger-stack">
+          <!-- Dynamically filled with burger layers as you play! -->
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="controls">
+        <button id="startBtn">Start Cooking!</button>
+        <div id="ingredient-buttons" class="ingredient-buttons hidden">
+          <button class="ingredient-btn" data-ingredient="🥬 Lettuce">🥬 Lettuce</button>
+          <button class="ingredient-btn" data-ingredient="🧀 Cheese">🧀 Cheese</button>
+          <button class="ingredient-btn" data-ingredient="🥩 Patty">🥩 Patty</button>
+          <button class="ingredient-btn" data-ingredient="🍅 Tomato">🍅 Tomato</button>
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- Footer section for general copyright or secondary info -->
+  <!-- Footer section -->
   <footer>
-    <p>© 2026 - Created by a future developer</p>
+    <p>🔥 Master Chef Arcade • Built with HTML, CSS, and JavaScript</p>
   </footer>
 
-  <!-- Linking our external JavaScript file for interactivity -->
+  <!-- Linking external JavaScript file -->
   <script src="script.js"></script>
 </body>
 </html>
