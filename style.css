@@ -799,3 +799,154 @@ footer p {
   border: 1px solid rgba(229, 195, 150, 0.2);
   margin-bottom: 2.5rem;
 }
+
+/* =========================================================
+   SECRET SLASH & VOID SCREEN STYLES
+   ========================================================= */
+
+/* Fullscreen Overlay for Slashes */
+.slash-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Flashy Slash Beams */
+.slash-line {
+  position: absolute;
+  height: 6px;
+  background: linear-gradient(90deg, transparent, #ffffff, var(--accent-gold), #ffffff, transparent);
+  box-shadow: 0 0 15px #ffffff, 0 0 30px var(--accent-gold), 0 0 50px #ffffff;
+  width: 160vmax;
+  opacity: 0;
+  border-radius: 4px;
+}
+
+.slash-1 {
+  top: 25%;
+  left: -20%;
+  transform-origin: left center;
+}
+
+.slash-2 {
+  top: 50%;
+  left: -20%;
+  transform-origin: left center;
+}
+
+.slash-3 {
+  top: 75%;
+  left: -20%;
+  transform-origin: left center;
+}
+
+/* Triggered Slash Animations */
+.slash-overlay.active .slash-1 {
+  animation: slashAnim1 0.35s cubic-bezier(0.1, 0.9, 0.2, 1) forwards 0.05s;
+}
+
+.slash-overlay.active .slash-2 {
+  animation: slashAnim2 0.35s cubic-bezier(0.1, 0.9, 0.2, 1) forwards 0.22s;
+}
+
+.slash-overlay.active .slash-3 {
+  animation: slashAnim3 0.35s cubic-bezier(0.1, 0.9, 0.2, 1) forwards 0.38s;
+}
+
+@keyframes slashAnim1 {
+  0% { opacity: 0; transform: rotate(-18deg) scaleX(0); }
+  25% { opacity: 1; }
+  85% { opacity: 1; transform: rotate(-18deg) scaleX(1.3); }
+  100% { opacity: 0; transform: rotate(-18deg) scaleX(1.3); }
+}
+
+@keyframes slashAnim2 {
+  0% { opacity: 0; transform: rotate(12deg) scaleX(0); }
+  25% { opacity: 1; }
+  85% { opacity: 1; transform: rotate(12deg) scaleX(1.3); }
+  100% { opacity: 0; transform: rotate(12deg) scaleX(1.3); }
+}
+
+@keyframes slashAnim3 {
+  0% { opacity: 0; transform: rotate(-24deg) scaleX(0); }
+  25% { opacity: 1; }
+  85% { opacity: 1; transform: rotate(-24deg) scaleX(1.3); }
+  100% { opacity: 0; transform: rotate(-24deg) scaleX(1.3); }
+}
+
+/* Blinding White to Black Fade */
+.flash-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.slash-overlay.active .flash-screen {
+  animation: flashAnim 0.7s ease-out forwards 0.45s;
+}
+
+@keyframes flashAnim {
+  0% { opacity: 0; }
+  25% { opacity: 0.95; background: #ffffff; }
+  100% { opacity: 1; background: #000000; }
+}
+
+/* Screen Impact Shake */
+body.screen-slashed {
+  animation: impactShake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes impactShake {
+  10%, 90% { transform: translate3d(-4px, 2px, 0) rotate(-0.5deg); }
+  20%, 80% { transform: translate3d(6px, -4px, 0) rotate(1deg); }
+  30%, 50%, 70% { transform: translate3d(-10px, 5px, 0) rotate(-1.5deg); }
+  40%, 60% { transform: translate3d(10px, -5px, 0) rotate(1.5deg); }
+}
+
+/* Mysterious Void Screen */
+.void-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.void-screen.visible-void {
+  opacity: 1;
+}
+
+.void-text {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 300;
+  color: #f5efe6;
+  letter-spacing: 6px;
+  margin-bottom: 2.5rem;
+  text-transform: lowercase;
+  text-shadow: 0 0 20px rgba(229, 195, 150, 0.3);
+  animation: pulseText 3.5s infinite ease-in-out;
+}
+
+@keyframes pulseText {
+  0%, 100% { opacity: 0.35; transform: scale(0.98); }
+  50% { opacity: 0.9; transform: scale(1.02); }
+}
