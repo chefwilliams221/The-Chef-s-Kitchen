@@ -1,22 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. SCROLL OBSERVER FOR ALTERNATING REVEALS
-  // Uses browser IntersectionObserver API to detect when cards scroll into view
+  // 1. BIDIRECTIONAL SCROLL REVEAL (Fades In & Fades Out)
+  // Observer settings: rootMargin adds a cushion so animations feel natural
   const observerOptions = {
     root: null,
-    threshold: 0.15 // Triggers animation when 15% of the element is in view
+    threshold: 0.15 // Triggers when 15% of the element enters/leaves the viewport
   };
 
   const scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      // Add 'visible' class when card enters viewport
+      // IF element enters the viewport -> Add .visible to slide/fade it IN
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+      } 
+      // ELSE element leaves the viewport (scrolling up or down) -> Remove .visible to slide/fade it OUT
+      else {
+        entry.target.classList.remove('visible');
       }
     });
   }, observerOptions);
 
-  // Target all elements set to animate from left, right, or up
+  // Attach observer to all reveal elements
   const revealElements = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up');
   revealElements.forEach(el => scrollObserver.observe(el));
 
@@ -31,12 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
       cartCount++;
       cartCountDisplay.textContent = cartCount;
 
-      // Subtle pulse animation on cart icon when item added
+      // Pulse animation on the cart pill
       const cartPill = document.getElementById('cartBtn');
       cartPill.style.transform = 'scale(1.1)';
       setTimeout(() => cartPill.style.transform = 'scale(1)', 200);
 
-      // Temporary button state change feedback
+      // Temporary button state update
       const originalText = e.target.textContent;
       e.target.textContent = '✓ ACQUIRED';
       e.target.style.backgroundColor = 'var(--accent-gold)';
@@ -51,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  // 3. NAVBAR SCROLL INTENSITY SHIFT
+  // 3. NAVBAR SCROLL RESIZING
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 80) {
