@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. SCROLL REVEAL OBSERVER
+  // 1. Intersection Observer for Smooth Fade-Ins
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -40px 0px',
+    rootMargin: '0px 0px -50px 0px',
     threshold: 0.1
   };
 
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target); // Keeps layout solid and stable once shown
+        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   revealElements.forEach(el => scrollObserver.observe(el));
 
 
-  // 2. INTERACTIVE CART COUNTER
+  // 2. Interactive Cart Counter & Micro-Feedback
   let cartCount = 0;
   const cartCountDisplay = document.getElementById('cartCount');
   const addButtons = document.querySelectorAll('.add-btn');
@@ -43,21 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.textContent = originalText;
         e.target.style.backgroundColor = 'transparent';
         e.target.style.color = 'var(--accent-gold)';
-      }, 1200);
+      }, 1400);
     });
-  });
-
-
-  // 3. NAVBAR SCROLL PADDING RESIZE
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) {
-      navbar.style.padding = '0.3rem 0';
-      navbar.style.background = 'rgba(8, 8, 10, 0.95)';
-    } else {
-      navbar.style.padding = '0';
-      navbar.style.background = 'rgba(8, 8, 10, 0.88)';
-    }
   });
 
 });
