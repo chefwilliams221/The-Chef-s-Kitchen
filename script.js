@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. Intersection Observer for Smooth Fade-Ins
+  // 1. Intersection Observer for Scroll Reveals
   const observerOptions = {
     root: null,
     rootMargin: '0px 0px -50px 0px',
@@ -16,11 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  const revealElements = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up');
+  const revealElements = document.querySelectorAll('.reveal-up');
   revealElements.forEach(el => scrollObserver.observe(el));
 
 
-  // 2. Interactive Cart Counter & Micro-Feedback
+  // 2. Interactive Cart Counter
   let cartCount = 0;
   const cartCountDisplay = document.getElementById('cartCount');
   const addButtons = document.querySelectorAll('.add-btn');
