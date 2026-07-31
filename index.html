@@ -3,67 +3,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Cozy Kitchen Arcade</title>
-  <!-- Linking main CSS stylesheet -->
+  <title>CHEF'S RESERVE | Culinary Excellence</title>
+  <!-- Main CSS stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Header featuring our kitchen arcade banner -->
-  <header>
-    <h1>🍳 The Cozy Kitchen Arcade 🍳</h1>
-    <p>Serve up high scores in your favorite culinary mini-games!</p>
+  <!-- Floating Navigation Bar that darkens when scrolling -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">CHEF'S RESERVE <span>🔪</span></div>
+      <ul class="nav-links">
+        <li><a href="#knives">Knives</a></li>
+        <li><a href="#boards">Cutting Boards</a></li>
+        <li><a href="#cookware">Cookware</a></li>
+        <li><a href="#about">The Craft</a></li>
+      </ul>
+      <button class="cart-btn" id="cartBtn">🛒 Cart (<span id="cartCount">0</span>)</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section with dark moody typography -->
+  <header class="hero">
+    <div class="hero-content">
+      <p class="subtitle">HANDCRAFTED FOR PROFESSIONALS</p>
+      <h1>Precision Tools For Culinary Masters</h1>
+      <p class="description">Elevate your kitchen experience with artisan knives, end-grain hardwoods, and heavy-duty iron cookware.</p>
+      <a href="#knives" class="cta-button">Explore Collection</a>
+    </div>
   </header>
 
-  <!-- Main hub containing our game menu and active game screen -->
   <main>
-    <!-- Left Panel: Game Selection Menu -->
-    <aside class="game-menu">
-      <h2>Game Menu</h2>
-      <ul>
-        <li><button class="menu-btn active">🍔 Burger Speed-Stack</button></li>
-        <li><button class="menu-btn locked" disabled>🍕 Pizza Topper (Coming Soon)</button></li>
-        <li><button class="menu-btn locked" disabled>🧁 Cupcake Decorator (Coming Soon)</button></li>
-      </ul>
-    </aside>
-
-    <!-- Right Panel: Active Game Arena -->
-    <section class="game-container">
-      <div id="game-header">
-        <h2>Burger Speed-Stack</h2>
-        <p>Click the ingredients in order to build the burger before time runs out!</p>
+    <!-- Section 1: Artisan Knives -->
+    <section id="knives" class="product-section scroll-reveal">
+      <div class="section-title">
+        <h2>Artisan Knives</h2>
+        <p>Forged from 67 layers of Damascus steel for unmatched edge retention.</p>
       </div>
 
-      <!-- Scoreboard display -->
-      <div class="stats-board">
-        <div>Score: <span id="score">0</span></div>
-        <div>Time Left: <span id="timer">15</span>s</div>
-      </div>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="card-badge">Best Seller</div>
+          <div class="product-icon">🗡️</div>
+          <h3>8" Damascus Chef Knife</h3>
+          <p>The ultimate kitchen workhorse. Perfect balance with an ergonomic Rosewood handle.</p>
 
-      <!-- Main Interactive Play Area -->
-      <div id="play-area" class="play-area">
-        <p id="recipe-prompt">Press "Start Cooking" to begin!</p>
-        <div id="burger-stack" class="burger-stack">
-          <!-- Dynamically filled with burger layers as you play! -->
+          <button class="add-to-cart-btn" data-product="Damascus Chef Knife">$189 — Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-icon">🔪</div>
+          <h3>7" Japanese Santoku</h3>
+          <p>Precision slicing, dicing, and mincing with hollow-edge anti-stick dimples.</p>
+
+          <button class="add-to-cart-btn" data-product="Japanese Santoku">$165 — Add to Cart</button>
         </div>
       </div>
+    </section>
 
-      <!-- Action Buttons -->
-      <div class="controls">
-        <button id="startBtn">Start Cooking!</button>
-        <div id="ingredient-buttons" class="ingredient-buttons hidden">
-          <button class="ingredient-btn" data-ingredient="🥬 Lettuce">🥬 Lettuce</button>
-          <button class="ingredient-btn" data-ingredient="🧀 Cheese">🧀 Cheese</button>
-          <button class="ingredient-btn" data-ingredient="🥩 Patty">🥩 Patty</button>
-          <button class="ingredient-btn" data-ingredient="🍅 Tomato">🍅 Tomato</button>
+    <!-- Section 2: Cutting Boards -->
+    <section id="boards" class="product-section scroll-reveal">
+      <div class="section-title">
+        <h2>End-Grain Cutting Boards</h2>
+        <p>Sustainably harvested hardwoods that preserve your knife edge.</p>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-icon">🪵</div>
+          <h3>Walnut Executive Board</h3>
+          <p>Deep rich grain with built-in juice grooves and non-slip rubber feet.</p>
+
+          <button class="add-to-cart-btn" data-product="Walnut Executive Board">$140 — Add to Cart</button>
         </div>
+
+        <div class="product-card">
+          <div class="product-icon">🪓</div>
+          <h3>Teak Butcher Block</h3>
+          <p>Heavy-duty end-grain block designed to handle heavy chopping and carving.</p>
+
+          <button class="add-to-cart-btn" data-product="Teak Butcher Block">$195 — Add to Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Professional Cookware -->
+    <section id="cookware" class="product-section scroll-reveal">
+      <div class="section-title">
+        <h2>Professional Cookware</h2>
+        <p>Heavyweight cast iron and carbon steel built to last generations.</p>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-icon">🍳</div>
+          <h3>Pre-Seasoned Cast Iron Skillet</h3>
+          <p>Delivers incredible heat retention for the perfect steakhouse sear.</p>
+
+          <button class="add-to-cart-btn" data-product="Cast Iron Skillet">$95 — Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-icon">🥘</div>
+          <h3>12" Carbon Steel Wok</h3>
+          <p>Lightweight, fast heating, and slick non-stick seasoning over time.</p>
+
+          <button class="add-to-cart-btn" data-product="Carbon Steel Wok">$110 — Add to Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: About / Craftsmanship -->
+    <section id="about" class="about-section scroll-reveal">
+      <div class="about-content">
+        <h2>Forged in Quality</h2>
+        <p>Every knife, board, and skillet in our collection undergoes a rigorous 20-point inspection before reaching your kitchen. Built for those who take cooking seriously.</p>
       </div>
     </section>
   </main>
 
-  <!-- Footer section -->
+  <!-- Sleek Footer -->
   <footer>
-    <p>🔥 Master Chef Arcade • Built with HTML, CSS, and JavaScript</p>
+    <p>© 2026 CHEF'S RESERVE • All Rights Reserved</p>
   </footer>
 
   <!-- Linking external JavaScript file -->
