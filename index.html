@@ -98,7 +98,7 @@
         </div>
         <div class="card-footer">
           <span class="price">$240</span>
-          <button class="add-btn" data-item="Damascus Gyuto">Acquire Instrument</button>
+          <button class="add-btn" data-item="67-Layer VG10 Damascus Gyuto" data-price="240">Acquire Instrument</button>
         </div>
       </div>
 
@@ -133,7 +133,7 @@
         </div>
         <div class="card-footer">
           <span class="price">$195</span>
-          <button class="add-btn" data-item="Black Walnut Board">Acquire Instrument</button>
+          <button class="add-btn" data-item="End-Grain Black Walnut Board" data-price="195">Acquire Instrument</button>
         </div>
       </div>
 
@@ -168,7 +168,7 @@
         </div>
         <div class="card-footer">
           <span class="price">$165</span>
-          <button class="add-btn" data-item="Carbon Steel Wok">Acquire Instrument</button>
+          <button class="add-btn" data-item="Hand-Hammered Carbon Steel Wok" data-price="165">Acquire Instrument</button>
         </div>
       </div>
 
@@ -192,6 +192,65 @@
       <p>© 2026 CHEF'S KITCHEN INC. • HAUTE CULINARY INSTRUMENTS</p>
     </div>
   </footer>
+
+  <!-- Slide-out Glass Cart Drawer & Backdrop -->
+  <div class="cart-backdrop" id="cartBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Bag Drawer">
+    <div class="drawer-header">
+      <div>
+        <span class="pill-tag">YOUR BAG</span>
+        <h3 class="drawer-title">Culinary Selection</h3>
+      </div>
+      <button class="close-drawer-btn" id="closeCartBtn" aria-label="Close Bag">&times;</button>
+    </div>
+
+    <!-- Empty State -->
+    <div class="cart-empty-state" id="cartEmptyState">
+      <p class="empty-msg">Your bag is currently empty.</p>
+      <a href="#instruments" class="btn-primary btn-sm" id="shopNowBtn">Explore Instruments</a>
+    </div>
+
+    <!-- Active Cart Content -->
+    <div class="cart-active-content hidden" id="cartActiveContent">
+      <div class="cart-items-container" id="cartItemsContainer">
+        <!-- Dynamically rendered cart items -->
+      </div>
+
+      <!-- Cost Breakdown Summary -->
+      <div class="cost-summary">
+        <div class="cost-row">
+          <span class="cost-label">Subtotal</span>
+          <span class="cost-val" id="subtotalAmount">$0.00</span>
+        </div>
+        <div class="cost-row">
+          <span class="cost-label">Estimated Tax (8.5%)</span>
+          <span class="cost-val" id="taxAmount">$0.00</span>
+        </div>
+        <div class="cost-row">
+          <span class="cost-label">Express Shipping</span>
+          <span class="cost-val free-shipping">Complimentary</span>
+        </div>
+        
+        <div class="cost-row total-row">
+          <span class="total-label">Total</span>
+          <span class="total-val" id="totalAmount">$0.00</span>
+        </div>
+
+        <button class="pay-btn" id="checkoutBtn">
+          <span id="payBtnText">Complete Purchase →</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Payment Confirmation Screen -->
+    <div class="payment-success-state hidden" id="paymentSuccessState">
+      <div class="success-icon">✓</div>
+      <h3>Payment Received</h3>
+      <p class="success-subtitle">Thank you for your order. Your culinary instruments are being prepared for dispatch.</p>
+      <div class="order-ref">ORDER REF: #CK-<span id="orderRefNum">8942</span></div>
+      <button class="btn-primary" id="continueShoppingBtn">Continue Browsing</button>
+    </div>
+  </aside>
 
   <script src="script.js"></script>
 </body>
