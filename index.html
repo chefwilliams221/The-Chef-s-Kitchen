@@ -8,18 +8,17 @@
   <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Background Ambient Lighting -->
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
+  <!-- Ambient Glow Backgrounds -->
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-middle"></div>
 
-  <!-- Ultra-Smooth Glassmorphic Header Navigation -->
+  <!-- Floating Glass Navigation Bar -->
   <nav id="navbar">
     <div class="nav-container">
       <a href="#" class="brand-logo">
@@ -37,61 +36,88 @@
     </div>
   </nav>
 
-  <!-- Hero Section (With Guaranteed Visible Title) -->
+  <!-- Hero Section -->
   <header class="hero-section">
     <div class="hero-content">
       <div class="hero-badge">
         <span class="badge-pulse"></span>
-        COLLECTION 2026 / LIMITED RELEASE
+        COLLECTION 2026 • LIMITED EDITION RELEASE
       </div>
       
-      <!-- Fixed Main Title -->
       <h1 class="hero-title">Chef's Kitchen</h1>
       
       <p class="hero-subtitle">
-        Master-grade Japanese steel, self-healing end-grain timber, and precision thermal cookware forged for culinary artists.
+        Master-grade Japanese steel, self-healing Appalachian timber, and heavy-gauge thermal carbon forged for culinary artists.
       </p>
       
       <div class="hero-actions">
         <a href="#instruments" class="btn-primary">Explore Instruments →</a>
       </div>
-    </div>
 
-    <!-- Minimalist Scroll Indicator -->
-    <a href="#instruments" class="scroll-cue" aria-label="Scroll down">
-      <span class="cue-text">SCROLL TO DISCOVER</span>
-      <div class="cue-line"></div>
-    </a>
+      <!-- Quick Stats Banner -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-value">61 HRC</span>
+          <span class="stat-label">Japanese Steel</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-value">100%</span>
+          <span class="stat-label">Hand Inspected</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-value">Lifetime</span>
+          <span class="stat-label">Mastery Guarantee</span>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <!-- Main Spaced-Out Showcase -->
+  <!-- Main Product Showcase Grid -->
   <main id="instruments" class="showcase-section">
 
     <div class="section-header reveal-up">
-      <span class="section-tag">SERIES OVERVIEW</span>
-      <h2>Precision Lineup</h2>
+      <span class="section-tag">PRECISION LINEUP</span>
+      <h2>Handcrafted Instruments</h2>
       <div class="header-divider"></div>
     </div>
 
-    <!-- Showcase Item 1: Knife -->
+    <!-- Item 1: Damascus Gyuto Knife -->
     <div class="alternating-row">
-      <div class="showcase-card reveal-left">
+      <div class="image-card reveal-left">
+        <div class="img-wrapper">
+          <img src="https://images.unsplash.com/photo-1593618998160-e34014e67546?q=80&w=1200&auto=format&fit=crop" alt="Damascus Gyuto Knife" />
+          <div class="img-overlay"></div>
+          <span class="floating-tag">SERIES 01 / SEKI JAPAN</span>
+        </div>
+      </div>
+
+      <div class="showcase-card reveal-right">
         <div class="card-header">
-          <span class="pill-tag">SERIES 01</span>
-          <span class="stock-status">In Stock</span>
+          <span class="pill-tag">CUTLERY</span>
+          <span class="stock-status">In Stock • Ready to Ship</span>
         </div>
         <div class="card-body">
           <h3>67-Layer VG10 Damascus Gyuto</h3>
-          <p>Hand-honed to an ultra-sharp 12° edge. Features a cryo-treated core wrapped in 66 layers of folded Damascus steel with an ergonomic Octagonal Rosewood handle.</p>
+          <p>Hand-honed to an ultra-sharp 12° bevel. Features a cryo-treated core wrapped in 66 layers of folded Damascus steel with an ergonomic Octagonal Rosewood handle.</p>
 
           <div class="specs-grid">
             <div class="spec-item">
               <span class="spec-label">HARDNESS</span>
-              <span class="spec-value">61 HRC</span>
+              <span class="spec-value">61 HRC Core</span>
             </div>
             <div class="spec-item">
               <span class="spec-label">BEVEL</span>
-              <span class="spec-value">12° Double</span>
+              <span class="spec-value">12° Double-Edge</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">HANDLE</span>
+              <span class="spec-value">Natural Rosewood</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">BALANCE</span>
+              <span class="spec-value">Pinch-Grip Center</span>
             </div>
           </div>
         </div>
@@ -100,34 +126,18 @@
           <button class="add-btn" data-item="Damascus Gyuto">Acquire Instrument</button>
         </div>
       </div>
-
-      <div class="visual-card reveal-right">
-        <div class="visual-content">
-          <span class="visual-num">01 / CUTLERY</span>
-          <div class="visual-graphic knife-graphic"></div>
-          <div class="visual-caption">FORGED IN SEKI, JAPAN</div>
-        </div>
-      </div>
     </div>
 
-    <!-- Showcase Item 2: Board -->
+    <!-- Item 2: End-Grain Walnut Board -->
     <div class="alternating-row reverse">
-      <div class="visual-card reveal-left">
-        <div class="visual-content">
-          <span class="visual-num">02 / TIMBER</span>
-          <div class="visual-graphic board-graphic"></div>
-          <div class="visual-caption">SUSTAINABLE APPALACHIAN HARDWOOD</div>
-        </div>
-      </div>
-
-      <div class="showcase-card reveal-right">
+      <div class="showcase-card reveal-left">
         <div class="card-header">
-          <span class="pill-tag">SERIES 02</span>
-          <span class="stock-status">Low Stock</span>
+          <span class="pill-tag">TIMBER</span>
+          <span class="stock-status">Low Stock • 4 Remaining</span>
         </div>
         <div class="card-body">
           <h3>End-Grain Black Walnut Board</h3>
-          <p>Constructed from 3.5-inch self-healing timber blocks. End-grain alignment absorbs blade force to preserve knife sharpness for years of heavy daily preparation.</p>
+          <p>Constructed from 3.5-inch self-healing timber blocks. End-grain vertical alignment absorbs blade force to preserve knife sharpness for years of daily prep.</p>
 
           <div class="specs-grid">
             <div class="spec-item">
@@ -135,8 +145,16 @@
               <span class="spec-value">18" × 24" × 3.5"</span>
             </div>
             <div class="spec-item">
+              <span class="spec-label">TIMBER</span>
+              <span class="spec-value">Appalachian Walnut</span>
+            </div>
+            <div class="spec-item">
               <span class="spec-label">FEET</span>
-              <span class="spec-value">Brass / Rubber</span>
+              <span class="spec-value">Solid Brass & Rubber</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">FINISH</span>
+              <span class="spec-value">Organic Beeswax</span>
             </div>
           </div>
         </div>
@@ -145,27 +163,51 @@
           <button class="add-btn" data-item="Black Walnut Board">Acquire Instrument</button>
         </div>
       </div>
+
+      <div class="image-card reveal-right">
+        <div class="img-wrapper">
+          <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=1200&auto=format&fit=crop" alt="End-Grain Cutting Board" />
+          <div class="img-overlay"></div>
+          <span class="floating-tag">SERIES 02 / SUSTAINABLE HARDWOOD</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Showcase Item 3: Wok -->
+    <!-- Item 3: Carbon Steel Wok -->
     <div class="alternating-row">
-      <div class="showcase-card reveal-left">
+      <div class="image-card reveal-left">
+        <div class="img-wrapper">
+          <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1200&auto=format&fit=crop" alt="Hand-Hammered Carbon Steel Wok" />
+          <div class="img-overlay"></div>
+          <span class="floating-tag">SERIES 03 / HEAVY CARBON</span>
+        </div>
+      </div>
+
+      <div class="showcase-card reveal-right">
         <div class="card-header">
-          <span class="pill-tag">SERIES 03</span>
-          <span class="stock-status">In Stock</span>
+          <span class="pill-tag">COOKWARE</span>
+          <span class="stock-status">In Stock • Ready to Ship</span>
         </div>
         <div class="card-body">
           <h3>Hand-Hammered Carbon Steel Wok</h3>
-          <p>Spun from 2.5mm heavy-gauge carbon steel. Delivers double the thermal velocity of cast iron at half the weight, establishing instant high-temperature sears.</p>
+          <p>Spun from 2.5mm heavy-gauge carbon steel. Delivers double the thermal response of cast iron at half the weight, establishing instant high-temperature sears.</p>
 
           <div class="specs-grid">
             <div class="spec-item">
-              <span class="spec-label">SEASONING</span>
-              <span class="spec-value">Organic Flax</span>
+              <span class="spec-label">PRE-SEASONED</span>
+              <span class="spec-value">Organic Flaxseed</span>
             </div>
             <div class="spec-item">
-              <span class="spec-label">HEAT RANGE</span>
+              <span class="spec-label">MAX TEMP</span>
               <span class="spec-value">Up to 800°F</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">WEIGHT</span>
+              <span class="spec-value">3.4 lbs</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">COMPATIBILITY</span>
+              <span class="spec-value">Gas, Induction, Fire</span>
             </div>
           </div>
         </div>
@@ -174,30 +216,24 @@
           <button class="add-btn" data-item="Carbon Steel Wok">Acquire Instrument</button>
         </div>
       </div>
-
-      <div class="visual-card reveal-right">
-        <div class="visual-content">
-          <span class="visual-num">03 / COOKWARE</span>
-          <div class="visual-graphic wok-graphic"></div>
-          <div class="visual-caption">HAND-SPUN HEAVY GAUGE STEEL</div>
-        </div>
-      </div>
     </div>
 
   </main>
 
-  <!-- Generously Spaced Philosophy Statement -->
+  <!-- Philosophy Section -->
   <section id="craftsmanship" class="craft-section reveal-up">
-    <span class="section-tag">PHILOSOPHY</span>
-    <h2>Uncompromising Culinary Standards</h2>
-    <p>Every tool is hand-inspected under 10x magnification before shipment. We design solely for professionals and discerning home chefs who view cooking as art.</p>
+    <div class="craft-content">
+      <span class="section-tag">PHILOSOPHY</span>
+      <h2>Uncompromising Standards for Serious Chefs</h2>
+      <p>Every single instrument is hand-inspected under 10x magnification before leaving our studio. We design exclusively for professionals and culinary enthusiasts who treat cooking as an art form.</p>
+    </div>
   </section>
 
-  <!-- Spaced-Out Footer -->
+  <!-- Footer -->
   <footer>
     <div class="footer-container">
       <div class="footer-logo">CHEF'S KITCHEN</div>
-      <p>© 2026 CHEF'S KITCHEN INC. • ALL RIGHTS RESERVED</p>
+      <p>© 2026 CHEF'S KITCHEN INC. • HAUTE CULINARY INSTRUMENTS</p>
     </div>
   </footer>
 
