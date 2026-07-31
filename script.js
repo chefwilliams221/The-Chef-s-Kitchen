@@ -1,213 +1,94 @@
-/* Base styles and warmth-filled color palette */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+// Wait for DOM to load fully before initializing game logic
+document.addEventListener('DOMContentLoaded', () => {
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fdf6ec; /* Warm checkered-kitchen feel */
-  color: #4a3e3d;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+  // List of possible ingredients for the burger game
+  const ingredientsList = ['🥬 Lettuce', '🧀 Cheese', '🥩 Patty', '🍅 Tomato'];
 
-/* Header styled like a cozy restaurant chalkboard banner */
-header {
-  background-color: #e74c3c;
-  color: #ffffff;
-  text-align: center;
-  padding: 1.5rem 1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+  // Game state variables
+  let score = 0;
+  let timeLeft = 15;
+  let timerInterval = null;
+  let targetIngredient = '';
+  let gameActive = false;
 
-header h1 {
-  font-size: 2.2rem;
-  margin-bottom: 0.3rem;
-}
+  // DOM Elements
+  const startBtn = document.getElementById('startBtn');
+  const ingredientButtons = document.getElementById('ingredient-buttons');
+  const recipePrompt = document.getElementById('recipe-prompt');
+  const burgerStack = document.getElementById('burger-stack');
+  const scoreDisplay = document.getElementById('score');
+  const timerDisplay = document.getElementById('timer');
+  const actionBtns = document.querySelectorAll('.ingredient-btn');
 
-/* Layout for main arcade menu and game screen */
-main {
-  flex: 1;
-  display: flex;
-  gap: 1.5rem;
-  max-width: 1000px;
-  width: 90%;
-  margin: 2rem auto;
-}
+  // Event listener to start the game
+  startBtn.addEventListener('click', startGame);
 
-/* Side navigation panel for selecting mini-games */
-.game-menu {
-  flex: 1;
-  background: #ffffff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 2px solid #f1c40f;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  height: fit-content;
-}
+  // Add click handlers to each ingredient button
+  actionBtns.forEach(button => {
+    button.addEventListener('click', (e) => {
+      if (!gameActive) return;
 
-.game-menu h2 {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  color: #d35400;
-  text-transform: uppercase;
-}
+      const chosenIngredient = e.target.getAttribute('data-ingredient');
 
-.game-menu ul {
-  list-style: none;
-}
+      // Check if player clicked the requested ingredient
+      if (chosenIngredient === targetIngredient) {
+        score += 10;
+        scoreDisplay.textContent = score;
+        addLayerToBurger(chosenIngredient);
+        nextRound(); // Ask for the next random ingredient
+      } else {
+        recipePrompt.textContent = `❌ Oops! Wrong ingredient! Add ${targetIngredient}!`;
+      }
+    });
+  });
 
-.menu-btn {
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 0.5rem;
-  border: 2px solid #e74c3c;
-  background-color: #fff;
-  color: #e74c3c;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.2s ease;
-}
+  // Function to initialize and run game timer
+  function startGame() {
+    score = 0;
+    timeLeft = 15;
+    gameActive = true;
+    scoreDisplay.textContent = score;
+    timerDisplay.textContent = timeLeft;
+    burgerStack.innerHTML = ''; // Clear previous burger stack
 
-.menu-btn.active {
-  background-color: #e74c3c;
-  color: white;
-}
+    startBtn.classList.add('hidden');
+    ingredientButtons.classList.remove('hidden');
 
-.menu-btn.locked {
-  border-color: #ccc;
-  color: #888;
-  cursor: not-allowed;
-  background-color: #f9f9f9;
-}
+    nextRound();
 
-/* Main active game container */
-.game-container {
-  flex: 2.5;
-  background: #ffffff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    // Start countdown timer loop
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      timerDisplay.textContent = timeLeft;
 
-#game-header {
-  text-align: center;
-  margin-bottom: 1rem;
-}
+      if (timeLeft <= 0) {
+        endGame();
+      }
+    }, 1000);
+  }
 
-/* Stats display for Timer & Score */
-.stats-board {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  background-color: #fff3e0;
-  padding: 0.75rem;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: #d35400;
-  margin-bottom: 1.5rem;
-}
+  // Picks a random ingredient for the player to press
+  function nextRound() {
+    const randomIndex = Math.floor(Math.random() * ingredientsList.length);
+    targetIngredient = ingredientsList[randomIndex];
+    recipePrompt.textContent = `Add: ${targetIngredient}!`;
+  }
 
-/* The visual cutting board play area */
-.play-area {
-  width: 100%;
-  min-height: 200px;
-  background-color: #f5cba7; /* Wooden cutting board color */
-  border: 8px solid #dc7633;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-}
+  // Visual helper: Adds an ingredient layer to the built burger stack
+  function addLayerToBurger(ingredientName) {
+    const layer = document.createElement('div');
+    layer.classList.add('ingredient-layer');
+    layer.textContent = ingredientName;
+    burgerStack.appendChild(layer);
+  }
 
-#recipe-prompt {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-/* Stacked ingredients container */
-.burger-stack {
-  display: flex;
-  flex-direction: column-reverse; /* Stack ingredients upward */
-  align-items: center;
-  gap: 4px;
-  margin-top: 10px;
-}
-
-.ingredient-layer {
-  font-size: 1.1rem;
-  font-weight: bold;
-  background-color: white;
-  padding: 0.2rem 1rem;
-  border-radius: 15px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Game Controls & Buttons */
-.controls {
-  text-align: center;
-  width: 100%;
-}
-
-#startBtn {
-  background-color: #27ae60;
-  color: white;
-  border: none;
-  padding: 0.8rem 2rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.1s, background-color 0.2s;
-}
-
-#startBtn:hover {
-  background-color: #219150;
-  transform: scale(1.03);
-}
-
-.ingredient-buttons {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.ingredient-btn {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.ingredient-btn:hover {
-  background-color: #2980b9;
-}
-
-.hidden {
-  display: none !important;
-}
-
-/* Footer styling */
-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #4a3e3d;
-  color: #fff;
-  font-size: 0.9rem;
-}
+  // Game Over logic
+  function endGame() {
+    clearInterval(timerInterval);
+    gameActive = false;
+    recipePrompt.textContent = `⏰ Time's up! You scored ${score} points!`;
+    ingredientButtons.classList.add('hidden');
+    startBtn.textContent = 'Play Again!';
+    startBtn.classList.remove('hidden');
+  }
+});
