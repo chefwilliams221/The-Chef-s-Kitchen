@@ -1,0 +1,89 @@
+/* Base resets to clear default browser spacing and set fonts */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header styling */
+header {
+  background-color: #4a90e2;
+  color: #ffffff;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Main container styling */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Card container for a sleek, modern look */
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.card h2 {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.card p {
+  margin-bottom: 1.5rem;
+}
+
+/* Interactive button styling */
+button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #357abd;
+}
+
+/* Hidden message style updated dynamically by JavaScript */
+.hidden-message {
+  margin-top: 1.5rem;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+/* Footer styling */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #e0e0e0;
+  font-size: 0.9rem;
+}
