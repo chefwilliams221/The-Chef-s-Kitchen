@@ -1,94 +1,62 @@
-// Wait for DOM to load fully before initializing game logic
 document.addEventListener('DOMContentLoaded', () => {
 
-  // List of possible ingredients for the burger game
-  const ingredientsList = ['🥬 Lettuce', '🧀 Cheese', '🥩 Patty', '🍅 Tomato'];
+  // 1. SCROLL REVEAL ANIMATION (Intersection Observer API)
+  // This detects when elements enter the user's screen as they scroll down
+  const observerOptions = {
+    root: null,
+    threshold: 0.15 // Section reveals when 15% of it becomes visible
+  };
 
-  // Game state variables
-  let score = 0;
-  let timeLeft = 15;
-  let timerInterval = null;
-  let targetIngredient = '';
-  let gameActive = false;
-
-  // DOM Elements
-  const startBtn = document.getElementById('startBtn');
-  const ingredientButtons = document.getElementById('ingredient-buttons');
-  const recipePrompt = document.getElementById('recipe-prompt');
-  const burgerStack = document.getElementById('burger-stack');
-  const scoreDisplay = document.getElementById('score');
-  const timerDisplay = document.getElementById('timer');
-  const actionBtns = document.querySelectorAll('.ingredient-btn');
-
-  // Event listener to start the game
-  startBtn.addEventListener('click', startGame);
-
-  // Add click handlers to each ingredient button
-  actionBtns.forEach(button => {
-    button.addEventListener('click', (e) => {
-      if (!gameActive) return;
-
-      const chosenIngredient = e.target.getAttribute('data-ingredient');
-
-      // Check if player clicked the requested ingredient
-      if (chosenIngredient === targetIngredient) {
-        score += 10;
-        scoreDisplay.textContent = score;
-        addLayerToBurger(chosenIngredient);
-        nextRound(); // Ask for the next random ingredient
-      } else {
-        recipePrompt.textContent = `❌ Oops! Wrong ingredient! Add ${targetIngredient}!`;
+  const revealOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      // If section scrolls into view, add the .visible class
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
       }
     });
+  }, observerOptions);
+
+  // Attach the observer to all elements with class 'scroll-reveal'
+  const revealElements = document.querySelectorAll('.scroll-reveal');
+  revealElements.forEach(element => revealOnScroll.observe(element));
+
+
+  // 2. NAVBAR BACKGROUND FADE ON SCROLL
+  const navbar = document.getElementById('navbar');
+
+  window.addEventListener('scroll', () => {
+    // Adds a darker, solid background to navbar once scrolled past 50px
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
   });
 
-  // Function to initialize and run game timer
-  function startGame() {
-    score = 0;
-    timeLeft = 15;
-    gameActive = true;
-    scoreDisplay.textContent = score;
-    timerDisplay.textContent = timeLeft;
-    burgerStack.innerHTML = ''; // Clear previous burger stack
 
-    startBtn.classList.add('hidden');
-    ingredientButtons.classList.remove('hidden');
+  // 3. INTERACTIVE CART COUNTER
+  let cartCount = 0;
+  const cartCountDisplay = document.getElementById('cartCount');
+  const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
 
-    nextRound();
+  addToCartBtns.forEach(button => {
+    button.addEventListener('click', (e) => {
+      cartCount++;
+      cartCountDisplay.textContent = cartCount;
 
-    // Start countdown timer loop
-    timerInterval = setInterval(() => {
-      timeLeft--;
-      timerDisplay.textContent = timeLeft;
+      // Temporary visual feedback on button press
+      const productName = e.target.getAttribute('data-product');
+      const originalText = e.target.textContent;
 
-      if (timeLeft <= 0) {
-        endGame();
-      }
-    }, 1000);
-  }
+      e.target.textContent = '✓ Added to Order!';
+      e.target.style.backgroundColor = '#d4af37';
+      e.target.style.color = '#0b0b0b';
 
-  // Picks a random ingredient for the player to press
-  function nextRound() {
-    const randomIndex = Math.floor(Math.random() * ingredientsList.length);
-    targetIngredient = ingredientsList[randomIndex];
-    recipePrompt.textContent = `Add: ${targetIngredient}!`;
-  }
-
-  // Visual helper: Adds an ingredient layer to the built burger stack
-  function addLayerToBurger(ingredientName) {
-    const layer = document.createElement('div');
-    layer.classList.add('ingredient-layer');
-    layer.textContent = ingredientName;
-    burgerStack.appendChild(layer);
-  }
-
-  // Game Over logic
-  function endGame() {
-    clearInterval(timerInterval);
-    gameActive = false;
-    recipePrompt.textContent = `⏰ Time's up! You scored ${score} points!`;
-    ingredientButtons.classList.add('hidden');
-    startBtn.textContent = 'Play Again!';
-    startBtn.classList.remove('hidden');
-  }
+      setTimeout(() => {
+        e.target.textContent = originalText;
+        e.target.style.backgroundColor = 'transparent';
+        e.target.style.color = '#fff';
+      }, 1500);
+    });
+  });
 });
