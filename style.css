@@ -434,7 +434,7 @@ html {
   margin-bottom: 2rem;
 }
 
-/* Abstract CSS Graphic Illustrations (Sleek minimalist art) */
+/* Abstract CSS Graphic Illustrations */
 .visual-graphic {
   width: 100px;
   height: 100px;
@@ -473,25 +473,27 @@ html {
   color: var(--text-muted);
 }
 
-/* Smooth Alternating Scroll Animations */
+/* Smooth Alternating Scroll Animations (In & Out Transitions) */
 .reveal-left {
   opacity: 0;
   transform: translateX(-60px);
-  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Cubic-bezier curve gives a smooth, high-end spring effect */
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-right {
   opacity: 0;
   transform: translateX(60px);
-  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-up {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Active State applied when in view, removed when scrolled away */
 .reveal-left.visible,
 .reveal-right.visible,
 .reveal-up.visible {
