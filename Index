@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My First Website</title>
+  <!-- Linking our external CSS stylesheet for styling -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Main header section containing the site title -->
+  <header>
+    <h1>Welcome to My Website!</h1>
+    <p>Built with HTML, CSS, and JavaScript.</p>
+  </header>
+
+  <!-- Main content area -->
+  <main>
+    <section class="card">
+      <h2>About Me</h2>
+      <p>Hi! I'm learning web development and building my very first site hosted on GitHub Pages.</p>
+      <!-- An interactive button that triggers JavaScript -->
+      <button id="interactiveBtn">Click Me!</button>
+      <p id="messageText" class="hidden-message"></p>
+    </section>
+  </main>
+
+  <!-- Footer section for general copyright or secondary info -->
+  <footer>
+    <p>© 2026 - Created by a future developer</p>
+  </footer>
+
+  <!-- Linking our external JavaScript file for interactivity -->
+  <script src="script.js"></script>
+</body>
+</html>
